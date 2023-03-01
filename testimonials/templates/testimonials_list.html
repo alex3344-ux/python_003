@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+{% block title %} Отзывы {% endblock title %}
+
+{% block content %}
+<table class="table table-striped container-fluid mt-5">
+  <tbody>
+
+    <tr>
+      <td>Отзыв</td>
+      <td>Автор</td>
+      <td>Активен</td>
+      <td>Дата создания</td>
+      <td>Дата изменения</td>
+      <td>Действие</td>
+    </tr>
+    {% for testimonial_item in testimonials %}
+    <tr>
+      <td><a href="{% url 'testimonials:testimonials_update' testimonial_item.pk %}">{{ testimonial_item.testimonial }}</a></td>
+      <td>{{ testimonial_item.first_name }} {{ testimonial_item.last_name }}</td>
+      <td>{{ testimonial_item.active }}</td>
+      <td>{{ testimonial_item.create_at }}</td>
+      <td>{{ testimonial_item.update_at }}</td>
+      <td><a href="{% url 'student_add' %}">Удалить</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="row">
+    <div class="col-12">
+        <a class="btn btn-success" href="{% url 'student_add' %}">Добавить комментарий</a>
+    </div>
+</div>
+
+{% endblock content %}
